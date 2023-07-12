@@ -9,7 +9,12 @@
   ],
   "scripts": {
     "build": "tsup",
-    "release": "np"
+    "release:np": "np",
+    "release": "pnpm run build && pnpm run release:np",
+    "release:npm": "pnpm run build && npm publish"
+  },
+  "engines": {
+    "node": ">=16"
   },
   "keywords": [],
   "author": "Logan Anderson",
