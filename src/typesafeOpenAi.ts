@@ -45,9 +45,10 @@ export class TypeSafeOpenAIApi extends OpenAIApi {
         options
       );
       const arr = res?.data?.choices || [];
-      const functionArgs = JSON.parse(
-        arr[0]?.message?.function_call?.arguments || "{}"
+      const rawFunctionArgs = JSON.parse(
+        arr[arr.length - 1]?.message?.function_call?.arguments || "{}"
       );
+      const functionArgs = functionForce.parameters.parse(rawFunctionArgs);
 
       return functionArgs as TypeOf<Z>;
     } else if ("functions" in args) {

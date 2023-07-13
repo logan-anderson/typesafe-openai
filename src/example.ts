@@ -1,4 +1,4 @@
-import { Configuration, OpenAIApi } from "openai";
+import { Configuration } from "openai";
 import z from "zod";
 import dotenv from "dotenv";
 dotenv.config();
@@ -12,7 +12,7 @@ const openai = new TypeSafeOpenAIApi(configuration);
 
 const run = async () => {
   // New Way
-  const res = await openai.createChatCompletionTypeSafe({
+  const args = await openai.createChatCompletionTypeSafe({
     messages: [
       {
         role: "user",
@@ -44,7 +44,7 @@ const run = async () => {
     //   },
     // ],
   });
-  console.dir({ res }, { depth: null });
+  console.dir({ args }, { depth: null });
 };
 
 run();
