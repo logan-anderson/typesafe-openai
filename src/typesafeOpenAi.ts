@@ -60,7 +60,6 @@ export class TypeSafeOpenAIApi extends OpenAIApi {
             parameters: zodToJsonSchema(fn.parameters),
           };
         }) || [];
-      console.dir(functions, { depth: null });
       const res = await this.createChatCompletion(
         { ...args, functions },
         options
