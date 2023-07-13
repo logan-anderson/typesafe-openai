@@ -16,7 +16,9 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:watch": "vitest run --watch",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "login": "npm login",
+    "whoami": "npm whoami"
   },
   "engines": {
     "node": ">=16"
