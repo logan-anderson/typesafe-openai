@@ -3,6 +3,10 @@
 [![npm version](https://badge.fury.io/js/typesafe-openai.svg)](https://badge.fury.io/js/typesafe-openai)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+# WARNING:
+
+This package is currently being worked on and the API is subject to change. Please do not use this package in production until it is stable.
+
 ## Description
 
 This package provides a subclass of the openAI that ensures type safety for function calling using zod. It does so by taking in a zod schema and converting it to a JSON schema that can be understood by the openAI API. It the arguments are also checked against the zod schema to ensure they are valid.
