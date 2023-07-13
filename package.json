@@ -12,6 +12,7 @@
     "release:np": "np",
     "release": "pnpm run build && pnpm run release:np",
     "release:npm": "pnpm run build && npm publish",
+    "run-script": "vite-node src/example.ts",
     "test": "vitest",
     "test:run": "vitest run",
     "test:watch": "vitest run --watch",
@@ -25,6 +26,7 @@
   "license": "",
   "devDependencies": {
     "@vitest/coverage-v8": "^0.33.0",
+    "dotenv": "^16.3.1",
     "np": "^8.0.4",
     "openai": "^3.3.0",
     "tsup": "^7.1.0",
@@ -32,5 +34,9 @@
     "vite": "^4.4.3",
     "vitest": "^0.33.0",
     "zod": "^3.21.4"
+  },
+  "dependencies": {
+    "vite-node": "^0.33.0",
+    "zod-to-json-schema": "^3.21.4"
   }
 }
