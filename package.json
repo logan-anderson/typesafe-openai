@@ -10,8 +10,8 @@
   "scripts": {
     "build": "tsup",
     "release:np": "np",
-    "release": "pnpm run build && pnpm run release:np",
-    "release:npm": "pnpm run build && npm publish",
+    "release": "yarn run build && yarn run release:np",
+    "release:npm": "yarn run build && npm publish",
     "run-script": "vite-node src/example.ts",
     "test": "vitest",
     "test:run": "vitest run",
