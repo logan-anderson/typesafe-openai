@@ -13,9 +13,8 @@
     "release": "yarn run build && yarn run release:np",
     "release:npm": "yarn run build && npm publish",
     "run-script": "vite-node src/example.ts",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "test:watch": "vitest run --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "coverage": "vitest run --coverage",
     "login": "npm login",
     "whoami": "npm whoami"
