@@ -22,9 +22,16 @@
   "engines": {
     "node": ">=16"
   },
-  "keywords": [],
+  "keywords": [
+    "openai",
+    "zod"
+  ],
   "author": "Logan Anderson",
-  "license": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "zod": "^3.x",
+    "openai": "3.x"
+  },
   "devDependencies": {
     "@vitest/coverage-v8": "^0.33.0",
     "dotenv": "^16.3.1",
