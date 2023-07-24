@@ -4,7 +4,7 @@ import { zodToJsonSchema } from "zod-to-json-schema";
 import type { ChatCompletionFunctions } from "openai";
 
 // This way of openAI updates the types ours will automatically update and we will get type errors if we do something wrong
-type CreateChatCompletionTypeSafeFunctionArgs = Parameters<
+export type CreateChatCompletionTypeSafeFunctionArgs = Parameters<
   OpenAIApi["createChatCompletion"]
 >;
 
