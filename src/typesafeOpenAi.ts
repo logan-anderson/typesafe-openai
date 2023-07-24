@@ -22,9 +22,6 @@ interface FunctionForceArg<Z extends ZodSchema> {
 }
 
 export class TypeSafeOpenAIApi extends OpenAIApi {
-  constructor(configuration) {
-    super(configuration);
-  }
   async createChatCompletionTypeSafe<Z extends ZodSchema>(
     args: Omit<CreateChatCompletionTypeSafeFunctionArgs[0], "functions"> &
       (FunctionsArg | FunctionForceArg<Z> | null),
