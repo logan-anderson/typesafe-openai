@@ -1,14 +1,16 @@
-import { Configuration } from "openai";
+import OpenAI from "openai";
 import z from "zod";
 import dotenv from "dotenv";
 dotenv.config();
 import { TypeSafeOpenAIApi } from "./typesafeOpenAi";
 
-const configuration = new Configuration({
+const o = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const openai = new TypeSafeOpenAIApi(configuration);
+const openai = new TypeSafeOpenAIApi({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 const run = async () => {
   // New Way

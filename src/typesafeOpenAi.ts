@@ -1,11 +1,10 @@
-import { OpenAIApi } from "openai";
+import OpenAI from "openai";
 import type { ZodSchema, TypeOf } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
-import type { ChatCompletionFunctions } from "openai";
 
 // This way of openAI updates the types ours will automatically update and we will get type errors if we do something wrong
 export type CreateChatCompletionTypeSafeFunctionArgs = Parameters<
-  OpenAIApi["createChatCompletion"]
+  OpenAI["chat"]["completions"]["create"]
 >;
 
 interface OpenAiFunctionWithParameters<Z extends ZodSchema = ZodSchema> {
@@ -21,7 +20,7 @@ interface FunctionForceArg<Z extends ZodSchema> {
   functionForce: OpenAiFunctionWithParameters<Z>;
 }
 
-export class TypeSafeOpenAIApi extends OpenAIApi {
+export class TypeSafeOpenAIApi extends OpenAI {
   async createChatCompletionTypeSafe<Z extends ZodSchema>(
     args: Omit<CreateChatCompletionTypeSafeFunctionArgs[0], "functions"> &
       (FunctionsArg | FunctionForceArg<Z> | null),
@@ -37,11 +36,11 @@ export class TypeSafeOpenAIApi extends OpenAIApi {
         },
       ];
 
-      const res = await this.createChatCompletion(
-        { ...rest, functions },
+      const res = await this.chat.completions.create(
+        { ...rest, functions, stream: false },
         options
       );
-      const arr = res?.data?.choices || [];
+      const arr = res?.choices || [];
       const rawFunctionArgs = JSON.parse(
         arr[arr.length - 1]?.message?.function_call?.arguments || "{}"
       );
@@ -49,7 +48,7 @@ export class TypeSafeOpenAIApi extends OpenAIApi {
 
       return functionArgs as TypeOf<Z>;
     } else if ("functions" in args) {
-      const functions: ChatCompletionFunctions[] =
+      const functions =
         args?.functions?.map((fn) => {
           return {
             name: fn.name,
@@ -57,17 +56,13 @@ export class TypeSafeOpenAIApi extends OpenAIApi {
             parameters: zodToJsonSchema(fn.parameters),
           };
         }) || [];
-      const res = await this.createChatCompletion(
+      const res = await this.chat.completions.create(
         { ...args, functions },
         options
       );
       return res;
-      // const arr = res?.data?.choices || [];
-      // const foo = JSON.parse(arr[0]?.message?.function_call?.arguments || "{}");
-
-      // return foo as TypeOf<Z>;
     } else {
-      return this.createChatCompletion(args, options);
+      return this.chat.completions.create(args, options);
     }
   }
 }

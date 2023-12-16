@@ -40,14 +40,13 @@ Before using this package, you must have an openAI API key. You can get one [her
 Using `functionForce` will force a function call to be returned and will only return the arguments that are defined. This is useful if you want to force your data to be returned in a certain format.
 
 ```typescript
-import { Configuration } from "openai";
 import z from "zod";
 import { TypeSafeOpenAIApi } from "typesafe-openai";
-const configuration = new Configuration({
+
+// TypeSafeOpenAIApi extends "OpenAI"
+const openai = new TypeSafeOpenAIApi({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-const openai = new TypeSafeOpenAIApi(configuration);
 
 const args = await openai.createChatCompletionTypeSafe({
   messages: [
